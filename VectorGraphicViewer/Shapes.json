@@ -22,5 +22,14 @@
     "filled": true,
     "color": "127; 255; 0; 255",
     "lineType": "dashDot"
+  },
+  {
+    "type": "rectangle",
+    "a": "-100; 0",
+    "width": 50.0,
+    "height":  200.0,
+    "filled": true,
+    "color": "51; 204; 51; 1",
+    "lineType": "dot"
   }
 ] 

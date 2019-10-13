@@ -26,6 +26,8 @@ namespace VectorGraphicViewer.Library.Helper
                             return new Circle();
                         case "triangle":
                             return new Triangle();
+                        case "rectangle":
+                            return new Rectangle();
                         default:
                             throw new ApplicationException(string.Format("The shape type {0} is not supported!", property.ToString()));
                     }

@@ -9,6 +9,20 @@ namespace VectorGraphicViewer.Library
         public ShapeType ShapeType { get; set; }
         public LineType LineType { get; set; }
         public string Color { get; set; }
+        public Pen MyPen { get; set; }
+        public List<int> ArgbColors { get; set; }
+
+        public virtual Pen GetPen()
+        {
+            ArgbColors = GetColors(Color);
+            MyPen = new Pen(System.Drawing.Color.Black)
+            {
+                Width = 2,
+                Color = System.Drawing.Color.FromArgb(ArgbColors[0], ArgbColors[1], ArgbColors[2], ArgbColors[3]),
+                DashStyle = GetDashStyle()
+            };
+            return MyPen;
+        }
         
         public virtual void Show(Graphics g, float canvasWidth, float canvasHeight)
         {

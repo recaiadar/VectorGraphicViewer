@@ -7,8 +7,6 @@ namespace VectorGraphicViewer.Library
 {
     public class Triangle: Shape
     {
-        Pen myPen = new Pen(System.Drawing.Color.Black);
-
         public string A { get; set; }
         public string B { get; set; }
         public string C { get; set; }
@@ -27,10 +25,7 @@ namespace VectorGraphicViewer.Library
         }
         public override void Show(Graphics g, float canvasWidth, float canvasHeight)
         {
-            myPen.Width = 2;
-            var argbColors = GetColors(Color);
-            myPen.Color = System.Drawing.Color.FromArgb(argbColors[0], argbColors[1], argbColors[2], argbColors[3]);
-            myPen.DashStyle = GetDashStyle();
+            MyPen = GetPen();
             var aCoordinates = A.Split(';');
             var bCoordinates = B.Split(';');
             var cCoordinates = C.Split(';');
@@ -38,10 +33,10 @@ namespace VectorGraphicViewer.Library
             points[0] = new PointF(canvasWidth/2 + float.Parse(aCoordinates[0]), canvasHeight/2 + float.Parse(aCoordinates[1]));
             points[1] = new PointF(canvasWidth/2 + float.Parse(bCoordinates[0]), canvasHeight/2 + float.Parse(bCoordinates[1]));
             points[2] = new PointF(canvasWidth/2 + float.Parse(cCoordinates[0]), canvasHeight/2 + float.Parse(cCoordinates[1]));
-            g.DrawPolygon(myPen, points);
+            g.DrawPolygon(MyPen, points);
             if (Filled)
             {
-                var brush = new SolidBrush(myPen.Color);
+                var brush = new SolidBrush(MyPen.Color);
                 g.FillPolygon(brush, points);
             }
         }

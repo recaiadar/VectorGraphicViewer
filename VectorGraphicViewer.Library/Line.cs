@@ -7,8 +7,6 @@ namespace VectorGraphicViewer.Library
 {
     public class Line : Shape
     {
-        Pen myPen = new Pen(System.Drawing.Color.Black);
-
         public string A { get; set; }
         public string B { get; set; }
 
@@ -23,10 +21,7 @@ namespace VectorGraphicViewer.Library
         }
         public override void Show(Graphics g, float canvasWidth, float canvasHeight)
         {
-            myPen.Width = 2;
-            var argbColors = GetColors(Color);
-            myPen.Color = System.Drawing.Color.FromArgb(argbColors[0], argbColors[1], argbColors[2], argbColors[3]);
-            myPen.DashStyle = GetDashStyle();
+            MyPen = GetPen();
             var startCoordinates = A.Split(';');
             var endCoordinates = B.Split(';');
             var startX = float.Parse(startCoordinates[0]);
@@ -38,7 +33,7 @@ namespace VectorGraphicViewer.Library
                 new PointF(canvasWidth / 2 + startX,canvasHeight / 2 + startY),
                 new PointF(canvasWidth / 2 + endX, canvasWidth / 2 + endY)
             };
-            g.DrawLines(myPen, points);
+            g.DrawLines(MyPen, points);
         }
     }
 }

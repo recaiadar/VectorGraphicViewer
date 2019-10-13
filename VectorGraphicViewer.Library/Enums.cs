@@ -16,6 +16,7 @@ namespace VectorGraphicViewer.Library
     {
         Line,
         Circle,
-        Triangle
+        Triangle,
+        Rectangle
     }
 }

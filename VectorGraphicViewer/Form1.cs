@@ -1,15 +1,8 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Script.Serialization;
 using System.Windows.Forms;
 using VectorGraphicViewer.Library;
 using VectorGraphicViewer.Library.Helper;
@@ -35,15 +28,29 @@ namespace VectorGraphicViewer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            string allJson = File.ReadAllText("Shapes.json");
-            allShapes = JsonConvert.DeserializeObject<List<Shape>>(allJson, new ShapeReader());
+            try
+            {
+                string allJson = File.ReadAllText("Shapes.json");
+                allShapes = JsonConvert.DeserializeObject<List<Shape>>(allJson, new ShapeReader());
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
 
         private void Canvas_Paint(object sender, PaintEventArgs e)
         {
-            foreach (var shape in allShapes)
+            try
             {
-                shape.Show(g, canvas.Width, canvas.Height);
+                foreach (var shape in allShapes)
+                {
+                    shape.Show(g, canvas.Width, canvas.Height);
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
             }
         }
     }
