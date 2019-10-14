@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.canvas = new System.Windows.Forms.Panel();
+            this.btnLoadFromXml = new System.Windows.Forms.Button();
+            this.canvas.SuspendLayout();
             this.SuspendLayout();
             // 
             // canvas
@@ -36,11 +38,23 @@
             this.canvas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.canvas.Controls.Add(this.btnLoadFromXml);
             this.canvas.Location = new System.Drawing.Point(0, 2);
             this.canvas.Name = "canvas";
             this.canvas.Size = new System.Drawing.Size(778, 452);
             this.canvas.TabIndex = 0;
             this.canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.Canvas_Paint);
+            // 
+            // btnLoadFromXml
+            // 
+            this.btnLoadFromXml.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLoadFromXml.Location = new System.Drawing.Point(615, 371);
+            this.btnLoadFromXml.Name = "btnLoadFromXml";
+            this.btnLoadFromXml.Size = new System.Drawing.Size(134, 65);
+            this.btnLoadFromXml.TabIndex = 0;
+            this.btnLoadFromXml.Text = "LoadFromXmlFile";
+            this.btnLoadFromXml.UseVisualStyleBackColor = true;
+            this.btnLoadFromXml.Click += new System.EventHandler(this.btnLoadFromXml_Click);
             // 
             // Form1
             // 
@@ -53,17 +67,15 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Canvas_Paint);
             this.Resize += new System.EventHandler(this.Form1_Resize);
+            this.canvas.ResumeLayout(false);
             this.ResumeLayout(false);
-            
-            g = canvas.CreateGraphics();
-
-            g.Clear(DefaultBackColor);
 
         }
 
         #endregion
 
         private System.Windows.Forms.Panel canvas;
+        private System.Windows.Forms.Button btnLoadFromXml;
     }
 }
 

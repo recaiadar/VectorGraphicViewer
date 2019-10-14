@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using System.Xml;
 using VectorGraphicViewer.Library;
 using VectorGraphicViewer.Library.Helper;
 
@@ -47,6 +49,24 @@ namespace VectorGraphicViewer
                 {
                     shape.Show(g, canvas.Width, canvas.Height);
                 }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+        private void btnLoadFromXml_Click(object sender, EventArgs e)
+        {
+            g.Clear(DefaultBackColor);
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load("Shapes.xml");
+                string allJson = JsonConvert.SerializeXmlNode(doc.LastChild);
+                var jObject = JObject.Parse(allJson);
+                var elements = jObject["root"]["element"];
+                allShapes = JsonConvert.DeserializeObject<List<Shape>>(elements.ToString(), new ShapeReader());
             }
             catch (Exception exc)
             {
