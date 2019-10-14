@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -71,6 +73,29 @@ namespace VectorGraphicViewer
             catch (Exception exc)
             {
                 MessageBox.Show(exc.Message);
+            }
+        }
+
+        private void exportToPdf_Click(object sender, EventArgs e)
+        {
+            Document doc = new Document(PageSize.A4.Rotate());
+
+            BaseFont arial = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+            iTextSharp.text.Font normalFont = new iTextSharp.text.Font(arial, 12, iTextSharp.text.Font.NORMAL);
+
+            FileStream fileStream = new FileStream("shapes.pdf", FileMode.Create);
+            using (fileStream)
+            {
+                PdfWriter.GetInstance(doc, fileStream);
+                doc.Open();
+                
+                string allJson = File.ReadAllText("Shapes.json");
+
+                Paragraph paragraph = new Paragraph(new Phrase(allJson, normalFont));
+                paragraph.Alignment = Element.ALIGN_LEFT;
+                doc.Add(paragraph);
+                doc.Close();
+                System.Diagnostics.Process.Start("shapes.pdf");
             }
         }
     }
