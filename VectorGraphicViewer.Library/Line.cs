@@ -24,14 +24,14 @@ namespace VectorGraphicViewer.Library
             MyPen = GetPen();
             var startCoordinates = A.Split(';');
             var endCoordinates = B.Split(';');
-            var startX = float.Parse(startCoordinates[0]);
-            var startY = float.Parse(startCoordinates[1]);
-            var endX = float.Parse(endCoordinates[0]);
-            var endY = float.Parse(endCoordinates[1]);
+            var startX = float.Parse(startCoordinates[0].Replace(',', '.'));
+            var startY = float.Parse(startCoordinates[1].Replace(',', '.'));
+            var endX = float.Parse(endCoordinates[0].Replace(',', '.'));
+            var endY = float.Parse(endCoordinates[1].Replace(',', '.'));
             PointF[] points =
             {
                 new PointF(canvasWidth / 2 + startX,canvasHeight / 2 + startY),
-                new PointF(canvasWidth / 2 + endX, canvasWidth / 2 + endY)
+                new PointF(canvasWidth / 2 + endX, canvasHeight / 2 - endY)
             };
             g.DrawLines(MyPen, points);
         }

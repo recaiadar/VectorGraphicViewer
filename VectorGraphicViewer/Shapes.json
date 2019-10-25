@@ -27,7 +27,7 @@
     "type": "rectangle",
     "a": "-100; 0",
     "width": 50.0,
-    "height":  200.0,
+    "height":  150.0,
     "filled": true,
     "color": "51; 204; 51; 1",
     "lineType": "dot"

@@ -27,8 +27,8 @@ namespace VectorGraphicViewer.Library
         {
             MyPen = GetPen();
             var topLeftCoordinates = A.Split(';');
-            var topLeftX = canvasWidth / 2 + float.Parse(topLeftCoordinates[0]);
-            var topLeftY = canvasHeight / 2 + float.Parse(topLeftCoordinates[1]);
+            var topLeftX = canvasWidth / 2 + float.Parse(topLeftCoordinates[0].Replace(',', '.'));
+            var topLeftY = canvasHeight / 2 + float.Parse(topLeftCoordinates[1].Replace(',', '.'));
             var rectangle = new System.Drawing.Rectangle((int)topLeftX, (int)topLeftY, (int)Width, (int)Height);
             g.DrawRectangle(MyPen, rectangle);
             if (Filled)

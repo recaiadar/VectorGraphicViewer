@@ -30,9 +30,9 @@ namespace VectorGraphicViewer.Library
             var bCoordinates = B.Split(';');
             var cCoordinates = C.Split(';');
             PointF[] points = new PointF[3];
-            points[0] = new PointF(canvasWidth/2 + float.Parse(aCoordinates[0]), canvasHeight/2 + float.Parse(aCoordinates[1]));
-            points[1] = new PointF(canvasWidth/2 + float.Parse(bCoordinates[0]), canvasHeight/2 + float.Parse(bCoordinates[1]));
-            points[2] = new PointF(canvasWidth/2 + float.Parse(cCoordinates[0]), canvasHeight/2 + float.Parse(cCoordinates[1]));
+            points[0] = new PointF(canvasWidth/2 + float.Parse(aCoordinates[0].Replace(',', '.')), canvasHeight/2 - float.Parse(aCoordinates[1].Replace(',', '.')));
+            points[1] = new PointF(canvasWidth/2 + float.Parse(bCoordinates[0].Replace(',', '.')), canvasHeight/2 - float.Parse(bCoordinates[1].Replace(',', '.')));
+            points[2] = new PointF(canvasWidth/2 + float.Parse(cCoordinates[0].Replace(',', '.')), canvasHeight/2 - float.Parse(cCoordinates[1].Replace(',', '.')));
             g.DrawPolygon(MyPen, points);
             if (Filled)
             {

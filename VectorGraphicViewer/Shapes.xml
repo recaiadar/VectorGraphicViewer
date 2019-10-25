@@ -28,9 +28,9 @@
     <a>-100; 0</a>
     <color>51; 204; 51; 1</color>
     <filled>true</filled>
-    <height>200.0</height>
+    <height>50.0</height>
     <lineType>dot</lineType>
     <type>rectangle</type>
-    <width>50.0</width>
+    <width>150.0</width>
   </element>
 </root>

@@ -28,8 +28,8 @@ namespace VectorGraphicViewer.Library
         {
             MyPen = GetPen();
             var centerCoordinates = Center.Split(';');
-            var centerX = float.Parse(centerCoordinates[0]);
-            var centerY = float.Parse(centerCoordinates[1]);
+            var centerX = float.Parse(centerCoordinates[0].Replace(',', '.'));
+            var centerY = float.Parse(centerCoordinates[1].Replace(',', '.'));
             g.DrawEllipse(MyPen, canvasWidth/2 + centerX - Radius, canvasHeight / 2 + centerY - Radius, Radius + Radius, Radius + Radius);
             if (Filled)
             {

@@ -82,9 +82,8 @@ namespace VectorGraphicViewer
 
             BaseFont arial = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
             iTextSharp.text.Font normalFont = new iTextSharp.text.Font(arial, 12, iTextSharp.text.Font.NORMAL);
-
-            FileStream fileStream = new FileStream("shapes.pdf", FileMode.Create);
-            using (fileStream)
+            
+            using (var fileStream = new FileStream("shapes.pdf", FileMode.Create))
             {
                 PdfWriter.GetInstance(doc, fileStream);
                 doc.Open();
