@@ -15,26 +15,20 @@ namespace VectorGraphicViewer.Library
         {
             ShapeType = ShapeType.Circle;
         }
-        public Circle(LineType lineType, string color, string center, float radius, bool filled)
-        {
-            LineType = lineType;
-            Color = color;
-            ShapeType = ShapeType.Circle;
-            Center = center;
-            Radius = radius;
-            Filled = filled;
-        }
+
         public override void Show(Graphics g, float canvasWidth, float canvasHeight)
         {
             MyPen = GetPen();
-            var centerCoordinates = Center.Split(';');
-            var centerX = float.Parse(centerCoordinates[0].Replace(',', '.'));
-            var centerY = float.Parse(centerCoordinates[1].Replace(',', '.'));
+            var centerCoordinates = Center.Replace(',','.').Split(';');
+            var centerX = float.Parse(centerCoordinates[0]);
+            var centerY = float.Parse(centerCoordinates[1]);
             g.DrawEllipse(MyPen, canvasWidth/2 + centerX - Radius, canvasHeight / 2 + centerY - Radius, Radius + Radius, Radius + Radius);
             if (Filled)
             {
-                var brush = new SolidBrush(MyPen.Color);
-                g.FillEllipse(brush, canvasWidth / 2 + centerX - Radius, canvasHeight / 2 + centerY - Radius, Radius + Radius, Radius + Radius);
+                using (var brush = new SolidBrush(MyPen.Color))
+                {
+                    g.FillEllipse(brush, canvasWidth / 2 + centerX - Radius, canvasHeight / 2 + centerY - Radius, Radius + Radius, Radius + Radius);
+                }
             }
         }
     }

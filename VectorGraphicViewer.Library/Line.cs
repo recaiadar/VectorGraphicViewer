@@ -10,24 +10,20 @@ namespace VectorGraphicViewer.Library
         public string A { get; set; }
         public string B { get; set; }
 
-        public Line() { ShapeType = ShapeType.Line; }
-        public Line(string a, string b, string color, LineType lineType)
+        public Line()
         {
-            A = a;
-            B = b;
-            Color = color;
-            LineType = LineType;
             ShapeType = ShapeType.Line;
         }
+
         public override void Show(Graphics g, float canvasWidth, float canvasHeight)
         {
             MyPen = GetPen();
-            var startCoordinates = A.Split(';');
-            var endCoordinates = B.Split(';');
-            var startX = float.Parse(startCoordinates[0].Replace(',', '.'));
-            var startY = float.Parse(startCoordinates[1].Replace(',', '.'));
-            var endX = float.Parse(endCoordinates[0].Replace(',', '.'));
-            var endY = float.Parse(endCoordinates[1].Replace(',', '.'));
+            var startCoordinates = A.Replace(',', '.').Split(';');
+            var endCoordinates = B.Replace(',', '.').Split(';');
+            var startX = float.Parse(startCoordinates[0]);
+            var startY = float.Parse(startCoordinates[1]);
+            var endX = float.Parse(endCoordinates[0]);
+            var endY = float.Parse(endCoordinates[1]);
             PointF[] points =
             {
                 new PointF(canvasWidth / 2 + startX,canvasHeight / 2 + startY),

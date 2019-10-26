@@ -12,32 +12,28 @@ namespace VectorGraphicViewer.Library
         public string C { get; set; }
         public bool Filled { get; set; }
 
-        public Triangle() { ShapeType = ShapeType.Triangle;  }
-        public Triangle(string a, string b, string c, bool filled,LineType lineType, string color)
+        public Triangle()
         {
-            A = a;
-            B = b;
-            C = c;
-            LineType = lineType;
-            Color = color;
             ShapeType = ShapeType.Triangle;
-            Filled = filled;
         }
+
         public override void Show(Graphics g, float canvasWidth, float canvasHeight)
         {
             MyPen = GetPen();
-            var aCoordinates = A.Split(';');
-            var bCoordinates = B.Split(';');
-            var cCoordinates = C.Split(';');
+            var aCoordinates = A.Replace(',', '.').Split(';');
+            var bCoordinates = B.Replace(',', '.').Split(';');
+            var cCoordinates = C.Replace(',', '.').Split(';');
             PointF[] points = new PointF[3];
-            points[0] = new PointF(canvasWidth/2 + float.Parse(aCoordinates[0].Replace(',', '.')), canvasHeight/2 - float.Parse(aCoordinates[1].Replace(',', '.')));
-            points[1] = new PointF(canvasWidth/2 + float.Parse(bCoordinates[0].Replace(',', '.')), canvasHeight/2 - float.Parse(bCoordinates[1].Replace(',', '.')));
-            points[2] = new PointF(canvasWidth/2 + float.Parse(cCoordinates[0].Replace(',', '.')), canvasHeight/2 - float.Parse(cCoordinates[1].Replace(',', '.')));
+            points[0] = new PointF(canvasWidth/2 + float.Parse(aCoordinates[0]), canvasHeight/2 - float.Parse(aCoordinates[1]));
+            points[1] = new PointF(canvasWidth/2 + float.Parse(bCoordinates[0]), canvasHeight/2 - float.Parse(bCoordinates[1]));
+            points[2] = new PointF(canvasWidth/2 + float.Parse(cCoordinates[0]), canvasHeight/2 - float.Parse(cCoordinates[1]));
             g.DrawPolygon(MyPen, points);
             if (Filled)
             {
-                var brush = new SolidBrush(MyPen.Color);
-                g.FillPolygon(brush, points);
+                using (var brush = new SolidBrush(MyPen.Color))
+                {
+                    g.FillPolygon(brush, points);
+                }
             }
         }
     }
