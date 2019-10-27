@@ -4,8 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorGraphicViewer", "VectorGraphicViewer\VectorGraphicViewer.csproj", "{AED0DB3B-A7DD-467F-BB9D-7A5B7A26C467}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A5EA8B6F-11E3-40E9-BAB5-27E3F796E77E} = {A5EA8B6F-11E3-40E9-BAB5-27E3F796E77E}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorGraphicViewer.Library", "VectorGraphicViewer.Library\VectorGraphicViewer.Library.csproj", "{A5EA8B6F-11E3-40E9-BAB5-27E3F796E77E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VectorGraphicViewer.Library", "VectorGraphicViewer.Library\VectorGraphicViewer.Library.csproj", "{A5EA8B6F-11E3-40E9-BAB5-27E3F796E77E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

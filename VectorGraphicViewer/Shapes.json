@@ -1,17 +1,11 @@
 ﻿[
   {
-    "type": "line",
-    "a": "-1,5; 3,4",
-    "b": "2,2; 5,7",
-    "color": "127; 255; 255; 255",
-    "lineType": "solid"
-  },
-  {
-    "type": "circle",
-    "center": "0; 0",
-    "radius": 15.0,
-    "filled": false,
-    "color": "127; 255; 0; 0",
+    "type": "rectangle",
+    "a": "-150; 10",
+    "width": 100.0,
+    "height": 150.0,
+    "filled": true,
+    "color": "51; 204; 51; 1",
     "lineType": "dot"
   },
   {
@@ -24,12 +18,18 @@
     "lineType": "dashDot"
   },
   {
-    "type": "rectangle",
-    "a": "-100; 0",
-    "width": 50.0,
-    "height":  150.0,
-    "filled": true,
-    "color": "51; 204; 51; 1",
+    "type": "circle",
+    "center": "0; 0",
+    "radius": 15.0,
+    "filled": false,
+    "color": "127; 255; 0; 0",
     "lineType": "dot"
+  },
+  {
+    "type": "line",
+    "a": "-1,5; 3,4",
+    "b": "2,2; 5,7",
+    "color": "127; 255; 255; 255",
+    "lineType": "solid"
   }
 ] 

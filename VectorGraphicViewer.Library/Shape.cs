@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Syncfusion.Pdf.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -24,7 +25,15 @@ namespace VectorGraphicViewer.Library
             return MyPen;
         }
         
-        public virtual void Show(Graphics g, float canvasWidth, float canvasHeight)
+        public virtual void Show(Graphics g, float canvasWidth, float canvasHeight, int scale)
+        {
+        }
+
+        public virtual void DrawShapeForPdf(PdfGraphics g, float pdfDocumentWidth, float pdfDocumentHeight)
+        {
+        }
+
+        public virtual void ScaleDrawing(Graphics g, RectangleF rectangle, float canvasWidth, float canvasHeight, int scale)
         {
         }
 

@@ -1,7 +1,6 @@
-﻿using iTextSharp.text;
-using iTextSharp.text.pdf;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Syncfusion.Pdf;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -15,10 +14,13 @@ namespace VectorGraphicViewer
 {
     public partial class Form1 : Form
     {
-        Pen myPen = new Pen(Color.Black);
         Graphics g = null;
-
         private List<Shape> allShapes;
+        private const int INITIALCANVASWIDTH = 584;
+        private const int INITIALCANVASHEIGHT = 367;
+
+        public int FormSizeScale { get; set; } = 1;
+
         public Form1()
         {
             InitializeComponent();
@@ -28,6 +30,9 @@ namespace VectorGraphicViewer
         {
             g = canvas.CreateGraphics();
             g.Clear(DefaultBackColor);
+            var widthScale = canvas.Width / INITIALCANVASWIDTH;
+            var heightScale = canvas.Height / INITIALCANVASHEIGHT;
+            FormSizeScale = Math.Min(widthScale, heightScale);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -49,7 +54,7 @@ namespace VectorGraphicViewer
             {
                 foreach (var shape in allShapes)
                 {
-                    shape.Show(g, canvas.Width, canvas.Height);
+                    shape.Show(g, canvas.Width, canvas.Height, FormSizeScale);
                 }
             }
             catch (Exception exc)
@@ -78,24 +83,16 @@ namespace VectorGraphicViewer
 
         private void exportToPdf_Click(object sender, EventArgs e)
         {
-            Document doc = new Document(PageSize.A4.Rotate());
+            PdfDocument doc = new PdfDocument();
+            PdfPage page = doc.Pages.Add();
 
-            BaseFont arial = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-            iTextSharp.text.Font normalFont = new iTextSharp.text.Font(arial, 12, iTextSharp.text.Font.NORMAL);
-            
-            using (var fileStream = new FileStream("shapes.pdf", FileMode.Create))
+            foreach (var shape in allShapes)
             {
-                PdfWriter.GetInstance(doc, fileStream);
-                doc.Open();
-                
-                string allJson = File.ReadAllText("Shapes.json");
-
-                Paragraph paragraph = new Paragraph(new Phrase(allJson, normalFont));
-                paragraph.Alignment = Element.ALIGN_LEFT;
-                doc.Add(paragraph);
-                doc.Close();
-                System.Diagnostics.Process.Start("shapes.pdf");
+                shape.DrawShapeForPdf(page.Graphics, doc.PageSettings.Width, doc.PageSettings.Height);
             }
+            doc.Save("Shapes.pdf");
+            doc.Close(true);
+            System.Diagnostics.Process.Start("Shapes.pdf");
         }
     }
 }
